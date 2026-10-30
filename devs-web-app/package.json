@@ -2,6 +2,7 @@
   "name": "devs-lang-web-editor",
   "version": "1.0.0",
   "private": true,
+  "homepage": "/a04",
   "description": "Web editor for textual DEVS specifications backed by Mapper_DEVS",
   "scripts": {
     "start": "node --openssl-legacy-provider ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --open --port 3000",

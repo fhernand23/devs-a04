@@ -9,6 +9,7 @@ module.exports = {
     'devsLangWorker': './src/devs-lang/devsLang.worker.ts'
   },
   output: {
+    publicPath: '/a04/',
     globalObject: 'self',
     filename: (chunkData) => {
       if (chunkData.chunk.name === 'editor.worker') return 'editor.worker.js';
@@ -27,6 +28,10 @@ module.exports = {
   plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
   devServer: {
     port: 3000,
-    hot: true
+    hot: true,
+    publicPath: '/a04/',
+    historyApiFallback: { index: '/a04/' },
+    openPage: 'a04/',
+    proxy: { '/b04': 'http://localhost:8094' }
   }
 };

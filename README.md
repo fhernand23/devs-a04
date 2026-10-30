@@ -1,446 +1,92 @@
-# devs-a04 - DEVS-Deploy
+# devs-a04 - DEVS Mapper
 
-Repositorio de despliegue e integración del entorno DEVS.
+Entorno DEVS integrado por dos componentes:
 
-Este proyecto centraliza la configuración necesaria para ejecutar de forma integrada los componentes principales del entorno:
+- **devs-backend** (Mapper_DEVS): procesa especificaciones textuales DEVS, genera el modelo intermedio, ejecuta validaciones EMF/OCL y transforma el modelo mediante ATL hacia el modelo computacional.
+- **devs-web-app** (DevsLangWebEditor): editor web para la creación, edición y procesamiento de especificaciones DEVS.
 
-- **Mapper_DEVS**: backend encargado de procesar especificaciones textuales DEVS, generar el modelo intermedio, ejecutar validaciones EMF/OCL y transformar el modelo mediante ATL hacia el modelo computacional.
-- **DevsLangWebEditor**: editor web para la creación, edición y procesamiento de especificaciones DEVS.
-
----
+Se despliega igual que `devs-a02`: las imágenes se construyen con este repo y los contenedores
+corren desde `pue-platform/qa.yml`, publicados por el `api-gateway`.
 
 ## Arquitectura
-
-El entorno se ejecuta mediante dos contenedores Docker:
 
 ```text
 Usuario
   |
   v
-Frontend / Nginx
-Puerto 80
-  |
-  | /api/*
-  v
-Mapper_DEVS
-Puerto interno 8080
-  |
-  +--> ANTLR
-  |
-  +--> Modelo intermedio DEVS
-  |
-  +--> Validación EMF / OCL
-  |
-  +--> Transformación ATL
-  |
-  +--> Modelo computacional DEVS
-  |
-  +--> Validación EMF / OCL
+api-gateway (pue-platform)
+  |-- /a04/*  --> a04-frontend:80    (nginx, archivos estáticos)
+  |-- /b04/*  --> a04-backend:8094   (Spring Boot, context-path /b04)
 ```
 
-El navegador accede únicamente al frontend.
+El frontend llama a la API con la ruta relativa `/b04/api/devs/map`.
 
-Las solicitudes realizadas a:
+| Servicio | Puerto interno | Puerto host | Ruta |
+|---|---|---|---|
+| a04-backend | 8094 | 8094 | `/b04/` |
+| a04-frontend | 80 | 3004 | `/a04/` |
 
-```text
-/api/*
+## Variables de entorno
+
+Copiar `.env.example` a `.env`:
+
+```
+A04_SERVER_PORT=8094
+A04_SERVER_PATH=/b04
 ```
 
-son redirigidas por Nginx al servicio backend:
+## Uso local
 
-```text
-backend:8080
-```
-
----
-
-## Estructura del repositorio
-
-```text
-DEVS-Deploy/
-|
-├── docker-compose.yml
-├── .gitmodules
-├── README.md
-|
-├── Mapper_DEVS/
-|   └── Backend
-|
-└── DevsLangWebEditor/
-    └── Frontend
-```
-
----
-
-## Requisitos
-
-Para ejecutar el entorno solamente se requiere:
-
-- Git
-- Docker
-- Docker Compose
-
-No es necesario instalar localmente:
-
-- Java
-- Maven
-- Node.js
-- npm
-- Eclipse
-- ATL
-- EMF
-- OCL
-
-Todas las dependencias necesarias son incorporadas durante la construcción de las imágenes Docker.
-
----
-
-## Clonar el proyecto
-
-Debido a que este repositorio utiliza submódulos Git, debe clonarse utilizando:
+`qa.yml` agrega un nginx que imita al api-gateway:
 
 ```bash
-git clone <URL-DEVS-DEPLOY>
+docker compose -f qa.yml up --build
 ```
 
----
+- Editor: http://localhost/a04/
+- API: `POST http://localhost/b04/api/devs/map` con `{"source": "..."}`
 
-## Ejecutar el entorno
-
-Desde la raíz de `DEVS-Deploy`:
+Sólo backend:
 
 ```bash
-docker compose up --build
+docker compose up a04-backend
 ```
 
-Esto construirá y levantará:
-
-```text
-Mapper_DEVS
-DevsLangWebEditor
-```
-
-Una vez iniciados los servicios, acceder desde el navegador a:
-
-```text
-http://localhost
-```
-
----
-
-## Ejecutar en segundo plano
-
-Para iniciar los servicios en modo detached:
+Frontend en modo desarrollo (proxy de `/b04` a `localhost:8094`):
 
 ```bash
-docker compose up --build -d
+cd devs-web-app
+npm install
+npm start      # http://localhost:3000/a04/
 ```
 
----
+## Deploy en el server
 
-## Verificar el estado
-
-Para consultar el estado de los servicios:
+Ver [deploy-ingar.md](deploy-ingar.md).
 
 ```bash
-docker compose ps
+cd ~/dev/devs-a04 && git pull && docker compose build
+cd ~/dev/pue-platform && docker compose -f qa.yml up -d a04-backend a04-frontend
 ```
-
-Deberían aparecer los servicios:
-
-```text
-backend
-frontend
-```
-
-en estado activo.
-
----
-
-## Ver logs
-
-Para visualizar los logs de todos los servicios:
-
-```bash
-docker compose logs -f
-```
-
-Logs únicamente del backend:
-
-```bash
-docker compose logs -f backend
-```
-
-Logs únicamente del frontend:
-
-```bash
-docker compose logs -f frontend
-```
-
----
-
-## Detener el entorno
-
-Para detener y eliminar los contenedores:
-
-```bash
-docker compose down
-```
-
----
-
-## Reconstruir el entorno
-
-Si se realizaron cambios en alguno de los proyectos:
-
-```bash
-docker compose up --build -d
-```
-
-Para forzar una reconstrucción completa:
-
-```bash
-docker compose build --no-cache
-docker compose up -d
-```
-
----
-
-## Actualización de los submódulos
-
-`DEVS-Deploy` referencia versiones concretas de:
-
-- `Mapper_DEVS`
-- `DevsLangWebEditor`
-
-Esto permite mantener trazabilidad sobre qué versión del frontend y qué versión del backend forman una determinada versión del sistema.
-
-Para obtener las versiones registradas actualmente en `DEVS-Deploy`:
-
-```bash
-git pull
-git submodule update --init --recursive
-```
-
----
-
-## Actualizar los componentes a sus últimas versiones
-
-Si se desea actualizar los submódulos con los últimos cambios de sus ramas configuradas:
-
-```bash
-git submodule update --remote --merge
-```
-
-Luego registrar las nuevas referencias:
-
-```bash
-git add Mapper_DEVS DevsLangWebEditor
-git commit -m "Update DEVS components"
-git push
-```
-
----
-
-## Flujo de actualización recomendado
-
-Cuando se modifica el backend:
-
-```text
-Mapper_DEVS
-   |
-   | commit + push
-   v
-Repositorio remoto
-```
-
-Cuando se modifica el frontend:
-
-```text
-DevsLangWebEditor
-   |
-   | commit + push
-   v
-Repositorio remoto
-```
-
-Luego se actualizan las referencias desde `DEVS-Deploy`:
-
-```bash
-git submodule update --remote --merge
-
-git add Mapper_DEVS DevsLangWebEditor
-
-git commit -m "Update DEVS components"
-
-git push
-```
-
-Finalmente se vuelve a desplegar:
-
-```bash
-docker compose up --build -d
-```
-
----
 
 ## Backend
 
-El servicio `backend` ejecuta `Mapper_DEVS`.
-
-El pipeline implementado es:
+Pipeline implementado:
 
 ```text
 Especificación textual DEVS
-        |
-        v
-ANTLR
-        |
-        v
-devsModel
-        |
-        v
-Validación EMF / OCL
-        |
-        v
-Transformación ATL
-        |
-        v
-devsComputationalModel
-        |
-        v
-Validación EMF / OCL
+   -> ANTLR
+   -> devsModel
+   -> Validación EMF / OCL
+   -> Transformación ATL
+   -> devsComputationalModel
+   -> Validación EMF / OCL
 ```
 
-El backend se ejecuta internamente en:
+Endpoint: `POST /b04/api/devs/map`.
 
-```text
-backend:8080
-```
+## Tecnologías
 
-El puerto 8080 no necesita exponerse públicamente, ya que el frontend accede al backend a través de Nginx.
-
----
-
-## Frontend
-
-El servicio `frontend` construye `DevsLangWebEditor` y utiliza Nginx para servir la aplicación.
-
-El frontend se publica mediante:
-
-```text
-Puerto 80
-```
-
-y se accede desde:
-
-```text
-http://localhost
-```
-
-Las solicitudes al backend se realizan utilizando rutas relativas:
-
-```text
-/api/devs/map
-```
-
-Nginx se encarga de redirigir estas solicitudes hacia:
-
-```text
-http://backend:8080
-```
-
-Esto evita depender de direcciones como:
-
-```text
-localhost:8080
-```
-
-y permite desplegar el entorno en otros servidores sin modificar el código del frontend.
-
----
-
-## Despliegue en servidor
-
-En un servidor, el procedimiento general es:
-
-```bash
-git clone --recurse-submodules <URL-DEVS-DEPLOY>
-
-cd DEVS-Deploy
-
-docker compose up --build -d
-```
-
-Luego se puede acceder utilizando:
-
-```text
-http://IP-DEL-SERVIDOR
-```
-
-o mediante el dominio configurado para dicho servidor.
-
----
-
-## Tecnologías utilizadas
-
-### Backend
-
-- Java 21
-- Spring Boot
-- ANTLR
-- Eclipse Modeling Framework (EMF)
-- Eclipse OCL
-- ATL
-
-### Frontend
-
-- React
-- TypeScript
-- Monaco Editor
-- Webpack
-- Nginx
-
-### Despliegue
-
-- Docker
-- Docker Compose
-- Git Submodules
-
----
-
-## Repositorios relacionados
-
-### Mapper_DEVS
-
-Backend encargado del procesamiento y transformación de especificaciones textuales DEVS.
-
-### DevsLangWebEditor
-
-Editor web para la edición y procesamiento de especificaciones DEVS.
-
----
-
-## Estado actual
-
-El entorno permite ejecutar de forma integrada:
-
-```text
-Editor web
-   |
-   v
-Mapper_DEVS
-   |
-   +--> Parsing ANTLR
-   +--> Generación del modelo intermedio
-   +--> Validación OCL
-   +--> Transformación ATL
-   +--> Generación del modelo computacional
-   +--> Validación del modelo computacional
-```
-
-Todo el entorno puede iniciarse mediante un único comando:
-
-```bash
-docker compose up --build
-```
+- Backend: Java 21, Spring Boot, ANTLR, EMF, Eclipse OCL, ATL
+- Frontend: React, TypeScript, Monaco Editor, Webpack, Nginx
+- Despliegue: Docker, Docker Compose

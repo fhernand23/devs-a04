@@ -1,0 +1,25 @@
+services:
+  a04-backend:
+    container_name: a04-backend
+    build:
+      context: ./devs-backend
+      dockerfile: Dockerfile
+    image: a04-backend
+    restart: always
+    ports:
+      - 8094:8094
+    environment:
+      - SERVER_PORT=${A04_SERVER_PORT}
+      - SERVER_PATH=${A04_SERVER_PATH}
+
+  a04-frontend:
+    container_name: a04-frontend
+    build:
+      context: ./devs-web-app
+      dockerfile: Dockerfile
+    image: a04-frontend
+    restart: always
+    ports:
+      - 3004:80
+    depends_on:
+      - a04-backend

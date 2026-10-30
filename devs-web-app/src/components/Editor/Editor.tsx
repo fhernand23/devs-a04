@@ -133,7 +133,7 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
           <div className="panel-header">
             <div>
               <h2>Resultado del pipeline</h2>
-              <span>Respuesta de POST /api/devs/map</span>
+              <span>Respuesta de POST /b04/api/devs/map</span>
             </div>
             {response && <span className={`status ${response.success ? 'ok' : 'fail'}`}>{response.stage}</span>}
           </div>

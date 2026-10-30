@@ -23,8 +23,10 @@ export interface DevsMappingResponse {
   devsComputationalModelXmi?: string | null;
 }
 
+const BASE_URL = '/b04';
+
 export async function mapDevs(source: string): Promise<DevsMappingResponse> {
-  const response = await fetch('/api/devs/map', {
+  const response = await fetch(`${BASE_URL}/api/devs/map`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ source })
