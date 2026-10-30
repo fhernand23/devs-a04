@@ -1,0 +1,28 @@
+Worker = (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = XPHASE \union XLEVEL;
+XPHASE = {(phasein,phase) | phase \in PHASES};
+XLEVEL = {(levelin,level) | level \in LEVELS};
+PHASES = {"Present", "Absent"};
+LEVELS = {"Dark", "Light"};
+Y = {(actionout,action) | action \in ACTIONS};
+ACTIONS = {"Gone", "Typing", "Waving", "Reading"};
+S = ACTIONS \product \R \product {\true,\false};
+\delExt((action, deltatr,sent),e,(port, message)) = ("Typing", deltattyping, \false) \if action \equalTo "Gone" \and port \equalTo phasein \and message \equalTo "Present",
+													("Gone", \infinity, \false) \if action \notEqualTo "Gone" \and port \equalTo phasein \and message \equalTo "Absent",
+													("Waving", deltatr \substraction e, \false) \if action \equalTo "Reading" \and port \equalTo levelin \and message \equalTo "Dark",
+													("Reading", deltatr \substraction e, \false) \if action \equalTo "Waving" \and port \equalTo levelin \and message \equalTo "Light",
+													(action, deltatr \substraction e, sent) \inOtherCase;
+
+\delInt((action, deltatr, sent)) = 	(action, deltatr, \true ) \if sent \equalTo \false,
+									("Reading", deltatreading, \true) \if sent \and action \equalTo "Typing",
+									("Typing", deltattyping, \true) \if sent \and action \in {"Reading", "Waving"};
+
+\lambda((action, deltatr, sent)) = 	(actionout, action) \if \not sent,
+									(actionout, "Reading") \if sent \and action \equalTo "Typing",
+									(actionout, "Typing") \if sent \and action \in {"Reading", "Waving"};
+
+\ta((action, deltatr, sent)) =	0 \if \not sent ,
+								\infinity \if sent;

@@ -1,0 +1,20 @@
+DETECTOR = (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = { (p,action) | p \in {"action_in"} \and action \in ACTIONS};
+Y = { (p,signal) | p \in {"signal_out"} \and signal \in SIGNALS};
+S = { (signal,sent) | signal \in SIGNALS \and sent \in {\true,\false}};
+
+\delExt((signal,sent),e,(p,action)) = 
+	\if p \equalTo "action_in" \and action \in {"Typing","Waving"} \and signal \equalTo "Still" 	\then 	("Moving",\false),
+	\if p \equalTo "action_in" \and action \in {"Gone","Reading"} \and signal \equalTo "Moving" 	\then 	("Still",\false),
+	\if p \equalTo "action_in" 														\then 	(signal,\true);
+
+\delInt((signal,sent)) = (signal,\true) 		\if sent \equalTo \false;
+
+\lambda((signal,sent)) = ("signal_out",signal) 	\if sent \equalTo \false;
+
+\ta((signal,sent)) = 
+			\if \not sent	\then	0,
+			\if sent		\then	\infinity;

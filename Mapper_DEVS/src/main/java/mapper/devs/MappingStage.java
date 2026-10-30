@@ -1,0 +1,11 @@
+package mapper.devs;
+
+public enum MappingStage {
+    PARSING,
+    INTERMEDIATE_MAPPING,
+    INTERMEDIATE_VALIDATION,
+    ATL_TRANSFORMATION,
+    COMPUTATIONAL_VALIDATION,
+    COMPLETED,
+    ERROR
+}

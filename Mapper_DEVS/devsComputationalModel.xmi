@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<devsComputationalModel:AtomicModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:devsComputationalModel="http://www.example.org/devsComputationalModel" name="HUMMINGBIRD_FEEDER" description="">
+  <setsAndStructures xsi:type="devsComputationalModel:BooleanAlgebraSet"/>
+  <setsAndStructures xsi:type="devsComputationalModel:NewSet" name="X_V_ARRIBAL" type="STRING">
+    <elements xsi:type="devsComputationalModel:StringElement" value="small"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="tiny"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="medium"/>
+  </setsAndStructures>
+  <setsAndStructures xsi:type="devsComputationalModel:RealNumbersSet" includingZero="true"/>
+  <setsAndStructures xsi:type="devsComputationalModel:NewSet" name="bird_type_domain" type="STRING">
+    <elements xsi:type="devsComputationalModel:StringElement" value="small"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="nil"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="tiny"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="medium"/>
+  </setsAndStructures>
+  <setsAndStructures xsi:type="devsComputationalModel:NewSet" name="phase_domain" type="STRING">
+    <elements xsi:type="devsComputationalModel:StringElement" value="passive"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="feeding"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="refilling"/>
+    <elements xsi:type="devsComputationalModel:StringElement" value="querying"/>
+  </setsAndStructures>
+  <functions xsi:type="devsComputationalModel:ExternalTransitionFunction" name="deltaExt">
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+              <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="passive"/>
+              </firstOperand>
+              <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:InputPortName" name="p"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="arrival"/>
+              </secondOperand>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:InputPortVariable" name="v"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="tiny"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.1"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="feeding"/>
+      <stateVariable xsi:type="devsComputationalModel:ParameterName" variable="//@structure/@state/@variable.1" name="time_feed"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:InputPortVariable" variable="//@structure/@state/@variable.3" name="v"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+              <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="passive"/>
+              </firstOperand>
+              <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:InputPortName" name="p"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="arrival"/>
+              </secondOperand>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:InputPortVariable" name="v"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="small"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.2"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="feeding"/>
+      <stateVariable xsi:type="devsComputationalModel:ParameterName" variable="//@structure/@state/@variable.1" name="time_feed"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:InputPortVariable" variable="//@structure/@state/@variable.3" name="v"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+              <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="passive"/>
+              </firstOperand>
+              <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+                <firstOperand xsi:type="devsComputationalModel:InputPortName" name="p"/>
+                <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="arrival"/>
+              </secondOperand>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:InputPortVariable" name="v"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="medium"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.3"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="feeding"/>
+      <stateVariable xsi:type="devsComputationalModel:ParameterName" variable="//@structure/@state/@variable.1" name="time_feed"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:InputPortVariable" variable="//@structure/@state/@variable.3" name="v"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="passive"/>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:InputPortName" name="p"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="refill"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="refilling"/>
+      <stateVariable xsi:type="devsComputationalModel:ParameterName" variable="//@structure/@state/@variable.1" name="time_refill"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.3" name="bird_type"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="passive"/>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:InputPortName" name="p"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="amount"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="querying"/>
+      <stateVariable xsi:type="devsComputationalModel:ParameterName" variable="//@structure/@state/@variable.1" name="time_query"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.3" name="bird_type"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:Otherwise"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.0" name="phase"/>
+      <stateVariable xsi:type="devsComputationalModel:ArithmeticOperation" variable="//@structure/@state/@variable.1" arithmeticOperation="SUBSTRACTION">
+        <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="sigma"/>
+        <secondOperand xsi:type="devsComputationalModel:ElapsedTimeVariable"/>
+      </stateVariable>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.3" name="bird_type"/>
+    </specifications>
+  </functions>
+  <functions xsi:type="devsComputationalModel:InternalTransitionFunction" name="deltaInt">
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="tiny"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="passive"/>
+      <stateVariable xsi:type="devsComputationalModel:InfinityParameter" variable="//@structure/@state/@variable.1" symbol="infinity"/>
+      <stateVariable xsi:type="devsComputationalModel:ArithmeticOperation" variable="//@structure/@state/@variable.2" arithmeticOperation="SUBSTRACTION">
+        <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+        <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="0.1"/>
+      </stateVariable>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.3" value="nil"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="small"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="passive"/>
+      <stateVariable xsi:type="devsComputationalModel:InfinityParameter" variable="//@structure/@state/@variable.1" symbol="infinity"/>
+      <stateVariable xsi:type="devsComputationalModel:ArithmeticOperation" variable="//@structure/@state/@variable.2" arithmeticOperation="SUBSTRACTION">
+        <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+        <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="0.2"/>
+      </stateVariable>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.3" value="nil"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="medium"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="passive"/>
+      <stateVariable xsi:type="devsComputationalModel:InfinityParameter" variable="//@structure/@state/@variable.1" symbol="infinity"/>
+      <stateVariable xsi:type="devsComputationalModel:ArithmeticOperation" variable="//@structure/@state/@variable.2" arithmeticOperation="SUBSTRACTION">
+        <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+        <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="0.3"/>
+      </stateVariable>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.3" value="nil"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+          <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+          <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="refilling"/>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="passive"/>
+      <stateVariable xsi:type="devsComputationalModel:InfinityParameter" variable="//@structure/@state/@variable.1" symbol="infinity"/>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.2" value="16"/>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.3" value="nil"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:NextStateSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+          <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+          <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="querying"/>
+        </expression>
+      </condition>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.0" value="passive"/>
+      <stateVariable xsi:type="devsComputationalModel:InfinityParameter" variable="//@structure/@state/@variable.1" symbol="infinity"/>
+      <stateVariable xsi:type="devsComputationalModel:PreviousStateVariable" variable="//@structure/@state/@variable.2" name="nectar_level"/>
+      <stateVariable xsi:type="devsComputationalModel:ValueFromSet" variable="//@structure/@state/@variable.3" value="nil"/>
+    </specifications>
+  </functions>
+  <functions xsi:type="devsComputationalModel:OutputFunction" name="lambda">
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="tiny"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="LESS_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.1"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="true"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="tiny"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.1"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="false"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="small"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="LESS_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.2"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="true"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="small"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.2"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="false"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="medium"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="LESS_THAN_OR_EQUAL_TO">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.3"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="true"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:LogicalOperation">
+          <firstOperand xsi:type="devsComputationalModel:LogicalOperation">
+            <firstOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="feeding"/>
+            </firstOperand>
+            <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+              <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="bird_type"/>
+              <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="medium"/>
+            </secondOperand>
+          </firstOperand>
+          <secondOperand xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="GREATER_THAN">
+            <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+            <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="2.3"/>
+          </secondOperand>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:ValueFromSet" value="false"/>
+      <outputPortName name="request_refill"/>
+    </specifications>
+    <specifications xsi:type="devsComputationalModel:OutputSpecification">
+      <condition xsi:type="devsComputationalModel:If">
+        <expression xsi:type="devsComputationalModel:ComparisonOperation" comparisonOperation="EQUAL_TO">
+          <firstOperand xsi:type="devsComputationalModel:PreviousStateVariable" name="phase"/>
+          <secondOperand xsi:type="devsComputationalModel:ValueFromSet" value="querying"/>
+        </expression>
+      </condition>
+      <value xsi:type="devsComputationalModel:PreviousStateVariable" name="nectar_level"/>
+      <outputPortName name="availability"/>
+    </specifications>
+  </functions>
+  <functions xsi:type="devsComputationalModel:TimeAdvanceFunction" name="ta">
+    <specifications xsi:type="devsComputationalModel:TimeAdvanceSpecification">
+      <value xsi:type="devsComputationalModel:PreviousStateVariable" name="sigma"/>
+    </specifications>
+  </functions>
+  <emptySet/>
+  <structure>
+    <parameters name="time_feed" description="">
+      <definition xsi:type="devsComputationalModel:StringElement" value="time_feed_definition"/>
+    </parameters>
+    <parameters name="time_refill" description="">
+      <definition xsi:type="devsComputationalModel:StringElement" value="time_refill_definition"/>
+    </parameters>
+    <parameters name="time_query" description="">
+      <definition xsi:type="devsComputationalModel:StringElement" value="time_query_definition"/>
+    </parameters>
+    <inPorts name="refill" description=""/>
+    <inPorts name="amount" description=""/>
+    <inPorts name="arrival" description=""/>
+    <outPorts name="request_refill" description=""/>
+    <outPorts name="availability" description=""/>
+    <input>
+      <definition p="//@structure/@inPorts.0">
+        <v name="x_refill" description="" definition="//@setsAndStructures.0"/>
+      </definition>
+      <definition p="//@structure/@inPorts.2">
+        <v name="x_arrival" description="" definition="//@setsAndStructures.1"/>
+      </definition>
+    </input>
+    <output>
+      <definition p="//@structure/@outPorts.0">
+        <v name="y_request_refill" description="" definition="//@setsAndStructures.0"/>
+      </definition>
+      <definition p="//@structure/@outPorts.1">
+        <v name="y_availability" description="" definition="//@setsAndStructures.2"/>
+      </definition>
+    </output>
+    <state>
+      <variable name="phase" description="" definition="//@setsAndStructures.4" isPhase="true"/>
+      <variable name="sigma" description="" definition="//@setsAndStructures.2" isSigma="true"/>
+      <variable name="nectar_level" description="" definition="//@setsAndStructures.2"/>
+      <variable name="bird_type" description="" definition="//@setsAndStructures.3"/>
+    </state>
+  </structure>
+  <behavior functions="//@functions.0 //@functions.1 //@functions.2 //@functions.3"/>
+</devsComputationalModel:AtomicModel>

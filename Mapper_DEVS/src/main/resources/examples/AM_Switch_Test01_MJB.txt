@@ -1,0 +1,28 @@
+SWITCH = (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = {(p,v) | p \in IN_PORTS, v \in X_P};
+IN_PORTS = {in,in1};
+X_IN = X_IN1;
+X_IN1 = V;
+
+Y = {(p,v) | p \in OUT_PORTS, v \in Y_P};
+OUT_PORTS = {out,out1};
+Y_OUT = Y_OUT1;
+Y_OUT1 = V;
+
+S = { passive, active } \product \R \product {in,in1} \product V \product {\true,\false};
+
+\delExt((phase,sigma,inport,store,sw),e,(p,v)) = 	(active,processing_time,p,v,\not sw)	\if phase \equalTo passive \and  p \in {in,in1},
+									(phase, sigma \substraction e, inport, store, sw)   	\inOtherCase;
+
+\delInt((phase,sigma,inport,store,sw)) = ( passive, \infinity, inport, store, sw );
+
+\lambda((phase,sigma,inport,store,sw)) =
+						(out,store)  	\if phase \equalTo active \and sw \equalTo \true \and inport \equalTo in,
+						(out1,store)   	\if phase \equalTo active \and sw \equalTo \true \and inport \equalTo in1,
+						(out1,store)   	\if phase \equalTo active \and sw \equalTo \false \and inport \equalTo in,
+						(out,store)  	\if phase \equalTo active \and sw \equalTo \false \and inport \equalTo in1;
+
+\ta((phase,sigma,inport,store,sw)) = sigma;

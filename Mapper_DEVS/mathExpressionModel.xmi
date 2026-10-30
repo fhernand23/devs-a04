@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mathExpressionModel:BinaryExpression xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mathExpressionModel="http://www.example.org/mathExpressionModel">
+  <left xsi:type="mathExpressionModel:Element" name="x_pos"/>
+  <right xsi:type="mathExpressionModel:BinaryExpression" operator="MULTIPLY">
+    <left xsi:type="mathExpressionModel:Element" name="v_x"/>
+    <right xsi:type="mathExpressionModel:Element" name="sigma"/>
+  </right>
+</mathExpressionModel:BinaryExpression>
