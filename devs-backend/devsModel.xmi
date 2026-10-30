@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="ASCII"?>
+<devsModel:DevsSpecification xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:booleanExpressionModel="http://www.example.org/booleanExpressionModel" xmlns:devsModel="http://www.example.org/devsModel" xmlns:mathExpressionModel="http://www.example.org/mathExpressionModel" xmlns:setTheoryModel="http://www.example.org/setTheoryModel">
+  <models xsi:type="devsModel:AtomicModel" name="HUMMINGBIRD_FEEDER">
+    <definition xsi:type="devsModel:ModelDefinition">
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="X"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <operation xsi:type="setTheoryModel:SetOperationResult">
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="X_ARRIBAL"/>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="X_REFILL"/>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="X_AMOUNT"/>
+                </operationSet>
+              </terms>
+              <operators xsi:type="setTheoryModel:SetOperator"/>
+              <operators xsi:type="setTheoryModel:SetOperator"/>
+            </operation>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="X_ARRIBAL"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <tupleCollection xsi:type="setTheoryModel:TupleCollection">
+                <tuples xsi:type="setTheoryModel:Tuple">
+                  <elements xsi:type="setTheoryModel:Element" name="p"/>
+                  <elements xsi:type="setTheoryModel:Element" name="v"/>
+                </tuples>
+                <definition xsi:type="setTheoryModel:TupleDefinition">
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="p"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="arrival"/>
+                        </elementCollection>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="v"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <operation xsi:type="setTheoryModel:SetOperationResult">
+                        <terms xsi:type="setTheoryModel:SetOperationTerm">
+                          <operationSet xsi:type="setTheoryModel:OperationSet">
+                            <symbol xsi:type="setTheoryModel:SetSymbol" name="X_V_ARRIBAL"/>
+                          </operationSet>
+                        </terms>
+                      </operation>
+                    </targetSet>
+                  </definitions>
+                </definition>
+              </tupleCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="X_V_ARRIBAL"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                <elements xsi:type="setTheoryModel:Element" name="tiny"/>
+                <elements xsi:type="setTheoryModel:Element" name="small"/>
+                <elements xsi:type="setTheoryModel:Element" name="medium"/>
+              </elementCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="X_REFILL"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <tupleCollection xsi:type="setTheoryModel:TupleCollection">
+                <tuples xsi:type="setTheoryModel:Tuple">
+                  <elements xsi:type="setTheoryModel:Element" name="p"/>
+                  <elements xsi:type="setTheoryModel:Element" name="v"/>
+                </tuples>
+                <definition xsi:type="setTheoryModel:TupleDefinition">
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="p"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="refill"/>
+                        </elementCollection>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="v"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <operation xsi:type="setTheoryModel:SetOperationResult">
+                        <terms xsi:type="setTheoryModel:SetOperationTerm">
+                          <operationSet xsi:type="setTheoryModel:OperationSet">
+                            <symbol xsi:type="setTheoryModel:SetSymbol" name="&#x1d539;" type="BOOLEAN"/>
+                          </operationSet>
+                        </terms>
+                      </operation>
+                    </targetSet>
+                  </definitions>
+                </definition>
+              </tupleCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="X_AMOUNT"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <tupleCollection xsi:type="setTheoryModel:TupleCollection">
+                <tuples xsi:type="setTheoryModel:Tuple">
+                  <elements xsi:type="setTheoryModel:Element" name="p"/>
+                  <elements xsi:type="setTheoryModel:Element" name="v"/>
+                </tuples>
+                <definition xsi:type="setTheoryModel:TupleDefinition">
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="p"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="amount"/>
+                        </elementCollection>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="v"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection" isEmpty="true"/>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                </definition>
+              </tupleCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="Y"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <operation xsi:type="setTheoryModel:SetOperationResult">
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_REQUEST_REFILL"/>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_AVAILABILITY"/>
+                </operationSet>
+              </terms>
+              <operators xsi:type="setTheoryModel:SetOperator"/>
+            </operation>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_REQUEST_REFILL"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <tupleCollection xsi:type="setTheoryModel:TupleCollection">
+                <tuples xsi:type="setTheoryModel:Tuple">
+                  <elements xsi:type="setTheoryModel:Element" name="p"/>
+                  <elements xsi:type="setTheoryModel:Element" name="v"/>
+                </tuples>
+                <definition xsi:type="setTheoryModel:TupleDefinition">
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="p"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="request_refill"/>
+                        </elementCollection>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="v"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <operation xsi:type="setTheoryModel:SetOperationResult">
+                        <terms xsi:type="setTheoryModel:SetOperationTerm">
+                          <operationSet xsi:type="setTheoryModel:OperationSet">
+                            <symbol xsi:type="setTheoryModel:SetSymbol" name="&#x1d539;" type="BOOLEAN"/>
+                          </operationSet>
+                        </terms>
+                      </operation>
+                    </targetSet>
+                  </definitions>
+                </definition>
+              </tupleCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_AVAILABILITY"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <definition xsi:type="setTheoryModel:SetDefinition">
+              <tupleCollection xsi:type="setTheoryModel:TupleCollection">
+                <tuples xsi:type="setTheoryModel:Tuple">
+                  <elements xsi:type="setTheoryModel:Element" name="p"/>
+                  <elements xsi:type="setTheoryModel:Element" name="v"/>
+                </tuples>
+                <definition xsi:type="setTheoryModel:TupleDefinition">
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="p"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="availability"/>
+                        </elementCollection>
+                      </definition>
+                    </targetSet>
+                  </definitions>
+                  <definitions xsi:type="setTheoryModel:ElementDefinition">
+                    <element xsi:type="setTheoryModel:Element" name="v"/>
+                    <targetSet xsi:type="setTheoryModel:SetImplicitDefinition">
+                      <operation xsi:type="setTheoryModel:SetOperationResult">
+                        <terms xsi:type="setTheoryModel:SetOperationTerm">
+                          <operationSet xsi:type="setTheoryModel:OperationSet">
+                            <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_V_AVAILABILITY"/>
+                          </operationSet>
+                        </terms>
+                      </operation>
+                    </targetSet>
+                  </definitions>
+                </definition>
+              </tupleCollection>
+            </definition>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_V_AVAILABILITY"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <operation xsi:type="setTheoryModel:SetOperationResult">
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="&#x211d;" type="REAL"/>
+                </operationSet>
+              </terms>
+            </operation>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:SetSentence">
+        <setDef xsi:type="setTheoryModel:SetExplicitDefinition">
+          <symbol xsi:type="setTheoryModel:SetSymbol" name="S"/>
+          <definition xsi:type="setTheoryModel:SetImplicitDefinition">
+            <operation xsi:type="setTheoryModel:SetOperationResult">
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <definition xsi:type="setTheoryModel:SetDefinition">
+                    <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                      <elements xsi:type="setTheoryModel:Element" name="passive"/>
+                      <elements xsi:type="setTheoryModel:Element" name="feeding"/>
+                      <elements xsi:type="setTheoryModel:Element" name="refilling"/>
+                      <elements xsi:type="setTheoryModel:Element" name="querying"/>
+                    </elementCollection>
+                  </definition>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="&#x211d;" type="REAL"/>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <operationSet xsi:type="setTheoryModel:OperationSet">
+                  <symbol xsi:type="setTheoryModel:SetSymbol" name="Y_V_AVAILABILITY"/>
+                </operationSet>
+              </terms>
+              <terms xsi:type="setTheoryModel:SetOperationTerm">
+                <expression xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="X_V_ARRIBAL"/>
+                    </operationSet>
+                  </terms>
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" name="nil"/>
+                        </elementCollection>
+                      </definition>
+                    </operationSet>
+                  </terms>
+                  <operators xsi:type="setTheoryModel:SetOperator"/>
+                </expression>
+              </terms>
+              <operators xsi:type="setTheoryModel:SetOperator" type="CartesianProduct"/>
+              <operators xsi:type="setTheoryModel:SetOperator" type="CartesianProduct"/>
+              <operators xsi:type="setTheoryModel:SetOperator" type="CartesianProduct"/>
+            </operation>
+          </definition>
+        </setDef>
+      </sentences>
+      <sentences xsi:type="devsModel:FunctionSentence" function="//@models.0/@deltaExt"/>
+      <sentences xsi:type="devsModel:FunctionSentence" function="//@models.0/@deltaInt"/>
+      <sentences xsi:type="devsModel:FunctionSentence" function="//@models.0/@lambda"/>
+      <sentences xsi:type="devsModel:FunctionSentence" function="//@models.0/@ta"/>
+    </definition>
+    <signature xsi:type="setTheoryModel:ModelSignature">
+      <modelSymbol xsi:type="setTheoryModel:SetSymbol" name="HUMMINGBIRD_FEEDER"/>
+      <parameters xsi:type="setTheoryModel:Parameter" name="time_feed"/>
+      <parameters xsi:type="setTheoryModel:Parameter" name="time_refill"/>
+      <parameters xsi:type="setTheoryModel:Parameter" name="time_query"/>
+    </signature>
+    <inputSet xsi:type="setTheoryModel:SetImplicitDefinition">
+      <operation xsi:type="setTheoryModel:SetOperationResult">
+        <terms xsi:type="setTheoryModel:SetOperationTerm">
+          <operationSet xsi:type="setTheoryModel:OperationSet">
+            <symbol xsi:type="setTheoryModel:SetSymbol" name="X"/>
+          </operationSet>
+        </terms>
+      </operation>
+    </inputSet>
+    <outputSet xsi:type="setTheoryModel:SetImplicitDefinition">
+      <operation xsi:type="setTheoryModel:SetOperationResult">
+        <terms xsi:type="setTheoryModel:SetOperationTerm">
+          <operationSet xsi:type="setTheoryModel:OperationSet">
+            <symbol xsi:type="setTheoryModel:SetSymbol" name="Y"/>
+          </operationSet>
+        </terms>
+      </operation>
+    </outputSet>
+    <stateSet xsi:type="setTheoryModel:SetImplicitDefinition">
+      <operation xsi:type="setTheoryModel:SetOperationResult">
+        <terms xsi:type="setTheoryModel:SetOperationTerm">
+          <operationSet xsi:type="setTheoryModel:OperationSet">
+            <symbol xsi:type="setTheoryModel:SetSymbol" name="S"/>
+          </operationSet>
+        </terms>
+      </operation>
+    </stateSet>
+    <deltaExt xsi:type="devsModel:ExternalTransitionFunction">
+      <body xsi:type="devsModel:FunctionBody">
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:BinaryCondition">
+                <left xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="passive"/>
+                </left>
+                <right xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="p"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="arrival"/>
+                </right>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="v"/>
+                <right xsi:type="booleanExpressionModel:Element" name="tiny"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.1"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="feeding"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="#time_feed"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="v"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:BinaryCondition">
+                <left xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="passive"/>
+                </left>
+                <right xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="p"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="arrival"/>
+                </right>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="v"/>
+                <right xsi:type="booleanExpressionModel:Element" name="small"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.2"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="feeding"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="#time_feed"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="v"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:BinaryCondition">
+                <left xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="passive"/>
+                </left>
+                <right xsi:type="booleanExpressionModel:RelationalCondition">
+                  <left xsi:type="booleanExpressionModel:Element" name="p"/>
+                  <right xsi:type="booleanExpressionModel:Element" name="arrival"/>
+                </right>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="v"/>
+                <right xsi:type="booleanExpressionModel:Element" name="medium"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.3"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="feeding"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="#time_feed"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="v"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+              <right xsi:type="booleanExpressionModel:Element" name="passive"/>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="p"/>
+              <right xsi:type="booleanExpressionModel:Element" name="refill"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="refilling"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="#time_refill"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="bird_type"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+              <right xsi:type="booleanExpressionModel:Element" name="passive"/>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="p"/>
+              <right xsi:type="booleanExpressionModel:Element" name="amount"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="querying"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="#time_query"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="bird_type"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase" otherwise="true">
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="phase"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:BinaryExpression" operator="SUBTRACT">
+                <left xsi:type="mathExpressionModel:Element" name="sigma"/>
+                <right xsi:type="mathExpressionModel:Element" name="e"/>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="bird_type"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+      </body>
+    </deltaExt>
+    <deltaInt xsi:type="devsModel:InternalTransitionFunction">
+      <body xsi:type="devsModel:FunctionBody">
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+              <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+              <right xsi:type="booleanExpressionModel:Element" name="tiny"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="passive"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:InfinityLiteral"/>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:BinaryExpression" operator="SUBTRACT">
+                <left xsi:type="mathExpressionModel:Element" name="nectar_level"/>
+                <right xsi:type="mathExpressionModel:Element" name="0.1" value="0.1"/>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nil"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+              <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+              <right xsi:type="booleanExpressionModel:Element" name="small"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="passive"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:InfinityLiteral"/>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:BinaryExpression" operator="SUBTRACT">
+                <left xsi:type="mathExpressionModel:Element" name="nectar_level"/>
+                <right xsi:type="mathExpressionModel:Element" name="0.2" value="0.2"/>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nil"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+              <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition">
+              <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+              <right xsi:type="booleanExpressionModel:Element" name="medium"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="passive"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:InfinityLiteral"/>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:BinaryExpression" operator="SUBTRACT">
+                <left xsi:type="mathExpressionModel:Element" name="nectar_level"/>
+                <right xsi:type="mathExpressionModel:Element" name="0.3" value="0.3"/>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nil"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:RelationalCondition">
+            <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+            <right xsi:type="booleanExpressionModel:Element" name="refilling"/>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="passive"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:InfinityLiteral"/>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="16" value="16.0"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nil"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:RelationalCondition">
+            <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+            <right xsi:type="booleanExpressionModel:Element" name="querying"/>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="passive"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:InfinityLiteral"/>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nil"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+      </body>
+    </deltaInt>
+    <lambda xsi:type="devsModel:OutputFunction">
+      <body xsi:type="devsModel:FunctionBody">
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="tiny"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="LESS_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.1"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="true"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="tiny"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.1"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="false"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="small"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="LESS_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.2"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="true"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="small"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.2"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="false"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="medium"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="LESS_EQUAL">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.3"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="true"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:BinaryCondition">
+            <left xsi:type="booleanExpressionModel:BinaryCondition">
+              <left xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+                <right xsi:type="booleanExpressionModel:Element" name="feeding"/>
+              </left>
+              <right xsi:type="booleanExpressionModel:RelationalCondition">
+                <left xsi:type="booleanExpressionModel:Element" name="bird_type"/>
+                <right xsi:type="booleanExpressionModel:Element" name="medium"/>
+              </right>
+            </left>
+            <right xsi:type="booleanExpressionModel:RelationalCondition" relationalOperator="GREATER">
+              <left xsi:type="booleanExpressionModel:Element" name="nectar_level"/>
+              <right xsi:type="booleanExpressionModel:Element" name="2.3"/>
+            </right>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="request_refill"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:BooleanValue" literalValue="false"/>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:RelationalCondition">
+            <left xsi:type="booleanExpressionModel:Element" name="phase"/>
+            <right xsi:type="booleanExpressionModel:Element" name="querying"/>
+          </condition>
+          <result xsi:type="devsModel:TupleResult">
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="availability"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+            <values xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <symbol xsi:type="setTheoryModel:SetSymbol" name="nectar_level"/>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </values>
+          </result>
+        </cases>
+        <cases xsi:type="devsModel:FunctionCase" otherwise="true">
+          <result xsi:type="devsModel:SingleValueResult">
+            <value xsi:type="devsModel:SetValue">
+              <value xsi:type="setTheoryModel:SetImplicitDefinition">
+                <operation xsi:type="setTheoryModel:SetOperationResult">
+                  <terms xsi:type="setTheoryModel:SetOperationTerm">
+                    <operationSet xsi:type="setTheoryModel:OperationSet">
+                      <definition xsi:type="setTheoryModel:SetDefinition">
+                        <elementCollection xsi:type="setTheoryModel:ElementCollection">
+                          <elements xsi:type="setTheoryModel:Element" type="Tuple">
+                            <tuple xsi:type="setTheoryModel:Tuple" isEmpty="true"/>
+                          </elements>
+                        </elementCollection>
+                      </definition>
+                    </operationSet>
+                  </terms>
+                </operation>
+              </value>
+            </value>
+          </result>
+        </cases>
+      </body>
+    </lambda>
+    <ta xsi:type="devsModel:TimeAdvanceFunction">
+      <body xsi:type="devsModel:FunctionBody">
+        <cases xsi:type="devsModel:FunctionCase">
+          <condition xsi:type="booleanExpressionModel:RelationalCondition">
+            <left xsi:type="booleanExpressionModel:Constant" value="true"/>
+            <right xsi:type="booleanExpressionModel:Constant" value="true"/>
+          </condition>
+          <result xsi:type="devsModel:SingleValueResult">
+            <value xsi:type="devsModel:MathValue">
+              <value xsi:type="mathExpressionModel:Element" name="sigma"/>
+            </value>
+          </result>
+        </cases>
+      </body>
+    </ta>
+  </models>
+</devsModel:DevsSpecification>

@@ -1,0 +1,32 @@
+WORKER(#delta_typing,#delta_reading)= (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = X_PHASE \union X_LEVEL;
+	X_PHASE = {(p,phase) | p \in {"phase_in"} \and phase \in PHASES };
+	X_LEVEL = {(p,level) | p \in {"level_in"}, level \in LELEVLS };
+
+Y = {(p,action) | p \in {"action_out"}, action \in ACTIONS};
+
+S = { (action,delta_t_r,sent) | action \in ACTIONS, delta_t_r \in [0,\infinity), sent \in \B};
+
+\delExt((action,delta_t_r,sent),e,(p,v)) = 
+	("Typing",#delta_typing,\false)					\if p \equalTo "phase_in" \and v \equalTo "Present" \and action \equalTo "Gone",
+	("Gone",\infinity,\false)						\if p \equalTo "phase_in" \and v \equalTo "Absent" \and action \notEqualTo "Gone",
+	("Waiving", delta_t_r \substraction e,\false)		\if p \equalTo "level_in" \and v \equalTo "Dark" \and action \equalTo "Reading",
+	("Reading", delta_t_r \substraction e,\false)		\if p \equalTo "level_in" \and v \equalTo "Light" \and action \equalTo "Waiving",
+	(action,delta_t_r \substraction e,sent)			\inOtherCase;
+
+\delInt((action,delta_t_r,sent)) = (action', delta_t_r',\true),
+	action' \assign action \and delta_t_r' \assign delta_t_r 			\if \not sent,
+	action' \assign "Reading" \and delta_t_r' \assign #delta_reading 	\if action \equalTo "Typing" \and sent,
+	action' \assign "Typing" \and delta_t_r' \assign #delta_typing	 	\if action \in {"Reading","Waving"} \and sent;
+
+\lambda((action,delta_t_r,sent)) = ("action_out",action'),
+	action' \assign action		\if \not sent,
+	action' \assign "Reading"	\if action \equalTo "Typing" \and sent,
+	action' \assign "Typing"		\if action \in {"Reading","Waving"} \and sent;
+
+\ta((action,delta_t_r,sent)) = delta_int',
+	delta_int' \assign 0			\if \not sent,
+	delta_int' \assign delta_t_r 	\if sent;

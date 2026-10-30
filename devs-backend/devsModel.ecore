@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="devsModel" nsURI="http://www.example.org/devsModel" nsPrefix="devsModel">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DevsSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" upperBound="-1" eType="#//DevsModel" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DevsModel" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicModel" eSuperTypes="#//DevsModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1" eType="ecore:EClass http://www.example.org/setTheoryModel#//ModelSignature" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputSet" lowerBound="1" eType="ecore:EClass http://www.example.org/setTheoryModel#//SetExpression" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputSet" lowerBound="1" eType="ecore:EClass http://www.example.org/setTheoryModel#//SetExpression" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateSet" lowerBound="1" eType="ecore:EClass http://www.example.org/setTheoryModel#//SetExpression" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaExt" lowerBound="1" eType="#//ExternalTransitionFunction" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaInt" lowerBound="1" eType="#//InternalTransitionFunction" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lambda" lowerBound="1" eType="#//OutputFunction" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ta" lowerBound="1" eType="#//TimeAdvanceFunction" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Function" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="#//FunctionBody" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalTransitionFunction" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InternalTransitionFunction" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputFunction" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeAdvanceFunction" eSuperTypes="#//Function"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionBody">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="AtLeastOneCase"/>
+    </eAnnotations>
+    <eOperations name="AtLeastOneCase" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;            self.cases->size() >= 1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cases" upperBound="-1" eType="#//FunctionCase" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass http://www.example.org/booleanExpressionModel#//Expression" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1" eType="#//FunctionResult" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionResult" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleResult" eSuperTypes="#//FunctionResult">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="AtLeastOneValue"/>
+    </eAnnotations>
+    <eOperations name="AtLeastOneValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;            self.values->size() >= 1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1" eType="#//ExpressionValue" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleValueResult" eSuperTypes="#//FunctionResult">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ExpressionValue" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionValue" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetValue" eSuperTypes="#//ExpressionValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.example.org/setTheoryModel#//SetExpression" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MathValue" eSuperTypes="#//ExpressionValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.example.org/mathExpressionModel#//MathExpression" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="#//ExpressionValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="ecore:EClass http://www.example.org/booleanExpressionModel#//Expression" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+</ecore:EPackage>

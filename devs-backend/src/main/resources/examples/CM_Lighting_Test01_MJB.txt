@@ -1,0 +1,20 @@
+LIGHTING(#delta_saving) = (X, Y, D, M, EIC, EOC, IC, \select)
+
+\where
+
+X = {(p,action) | p \in {"action_in"}, action \in ACTIONS};
+Y = {(p,level) | p \in {"level_out"}, level \in LEVELS};
+
+D = {detector,fixture};
+
+M = { (detector, DETECTOR), (fixture,FIXTURE(#delta_saving))};
+
+EIC = {((LIGHTING,"action_in"),(detector,"action_in"))};
+
+EOC = {(("Fixture","level_out"),(LIGHTING,"level_out"))};
+
+IC = {((detector,"signal_out"),(fixture,"signal_in"))};
+
+\select(D_IMM) =
+	fixture 	\if (fixture \in D_IMM),
+	detector	\if detector \in D_IMM \and fixture \notIn D_IMM;

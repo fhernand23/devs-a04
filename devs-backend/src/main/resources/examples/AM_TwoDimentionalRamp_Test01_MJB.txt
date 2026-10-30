@@ -1,0 +1,20 @@
+TWODIMRAMP(#step_time) = (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = {(p,v) | p \in INPORTS, v \in V};
+INPORTS = {in};
+V = {(velocity,angle) | velocity \in \R, angle \in \R};
+Y = {(p,v) | p \in OUTPORTS, v \in V};
+OUTPORTS = {out}; 
+V = {(x_pos,y_pos) | x_pos \in \R, y_pos \in \R};
+
+S = { "passive", "active" } \product \R \product \R \product \R \product \R \product \R;
+
+\delExt((phase,sigma,v_x,v_y,x_pos,y_pos),e,((velocity,angle),v)) = ("active",sigma \substraction e,velocity \multiplication angle,velocity \multiplication angle,x_pos \addition e \multiplication v_x,y_pos \addition e \multiplication v_y);
+
+\delInt((phase,sigma,v_x,v_y,x_pos,y_pos)) = ("active",#step_time,v_x,v_y,x_pos \substraction sigma \multiplication v_x,y_pos \addition sigma \multiplication v_y);
+
+\lambda((phase,sigma,v_x,v_y,x_pos,y_pos)) = (out,x_pos \addition sigma \multiplication v_x,y_pos \addition sigma \multiplication v_y);
+
+\ta((phase,sigma,v_x,v_y,x_pos,y_pos)) = sigma;

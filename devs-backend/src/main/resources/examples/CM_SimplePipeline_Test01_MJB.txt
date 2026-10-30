@@ -1,0 +1,16 @@
+SIMPLE_PIPELINE = (X, Y, D, M, EIC, EOC, IC, \select)
+
+\where
+
+X = {(p,v) | p \in {"in"} \and v \in V};
+Y = {(p,v) | p \in {"out"}, v \in V};
+
+D = {p_0,p_1,p_2};
+
+M = {(p_0,SIMPLE_PROCESSOR),(p_1,SIMPLE_PROCESSOR),(p_2,SIMPLE_PROCESSOR)};
+
+EIC = {((SIMPLE_PIPELINE,"in"),(p_0,"in"))};
+
+EOC = {((p_2,"out"),(SIMPLE_PIPELINE,"out"))};
+
+IC = {((p_0,"out"),(p_1,"in")),((p_1,"out"),(p_2,"in"))};

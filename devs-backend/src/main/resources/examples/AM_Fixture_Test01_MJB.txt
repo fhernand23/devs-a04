@@ -1,0 +1,24 @@
+FIXTURE(#delta_saving,#delta_saving) = (X, Y, S, \delExt, \delInt, \lambda, \ta)
+
+\where
+
+X = {(p,signal) | p \in {"signal_in"} \and signal \in SIGNALS};
+Y = {(p,level) | p \in {"level_out"}, level \in LEVELS};
+
+S = {(level,sigma) | level \in LEVELS, sigma \in \R};
+
+\delExt((level,sigma),e,(p,signal)) = 
+    (level,0)                    \if p \equalTo "signal_in" \and signal \equalTo "moving" \and level \equalTo "dark",
+    (level,#delta_saving)        \if p \equalTo "signal_in" \and signal \equalTo "still" \and level \equalTo "light" \and sigma \equalTo \infinity,
+    (level,sigma \substraction e) \if p \equalTo "signal_in" \and signal \equalTo "still"\and level \equalTo "light" \and sigma \notEqualTo \infinity,
+    (level,\infinity)            \if p \equalTo "signal_in";
+
+\delInt((level,sigma)) = 
+    ("light",\infinity)          \if (level \equalTo "dark"),
+    ("dark",\infinity)           \if (level \equalTo "light");
+
+\lambda((level,sigma)) = 
+    ("level_out","light")        \if (level \equalTo "dark"),
+    ("level_out","dark")         \if (level \equalTo "light");
+
+\ta((level,sigma)) = sigma
