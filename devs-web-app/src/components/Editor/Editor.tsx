@@ -2,10 +2,14 @@ import * as React from 'react';
 import * as monaco from 'monaco-editor-core';
 import DevsLanguageService from '../../language-service/LanguageService';
 import { DevsMappingResponse, mapDevs } from '../../api/MapperDevsApi';
+import { ModelTree } from './ModelTree';
 
-interface IEditorProps { language: string; }
+interface IEditorProps {
+  language: string;
+}
 
 type OutputTab = 'summary' | 'intermediate' | 'computational';
+type ModelView = 'tree' | 'xml';
 
 const example = `DETECTOR = (X, Y, S, \\delExt, \\delInt, \\lambda, \\ta)
 
@@ -33,15 +37,26 @@ S = { (signal,sent) | signal \\in SIGNALS, sent \\in {\\true,\\false}};
 export const Editor: React.FC<IEditorProps> = ({ language }) => {
   const editorNode = React.useRef<HTMLDivElement | null>(null);
   const editorRef = React.useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
+
   const [busy, setBusy] = React.useState(false);
   const [response, setResponse] = React.useState<DevsMappingResponse | null>(null);
   const [clientErrors, setClientErrors] = React.useState<string[]>([]);
   const [requestError, setRequestError] = React.useState('');
   const [tab, setTab] = React.useState<OutputTab>('summary');
+  const [intermediateView, setIntermediateView] = React.useState<ModelView>('tree');
+  const [computationalView, setComputationalView] = React.useState<ModelView>('tree');
+
+  const isIntermediate = tab === 'intermediate';
+  const activeXmi = isIntermediate
+    ? response?.devsModelXmi
+    : response?.devsComputationalModelXmi;
+  const activeView = isIntermediate ? intermediateView : computationalView;
+  const setActiveView = isIntermediate ? setIntermediateView : setComputationalView;
 
   React.useEffect(() => {
     if (!editorNode.current) return;
-    editorRef.current = monaco.editor.create(editorNode.current, {
+
+    const editor = monaco.editor.create(editorNode.current, {
       value: example,
       language,
       automaticLayout: true,
@@ -52,28 +67,43 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
       glyphMargin: true,
       scrollBeyondLastLine: false
     });
-    return () => editorRef.current?.dispose();
+
+    editorRef.current = editor;
+
+    return () => {
+      editor.dispose();
+      editorRef.current = null;
+    };
   }, [language]);
 
   const validateClient = (): boolean => {
     const source = editorRef.current?.getValue() ?? '';
     const errors = new DevsLanguageService().validate(source);
-    setClientErrors(errors.map(e => `Línea ${e.startLineNumber}:${e.startColumn} — ${e.message}`));
+
+    setClientErrors(
+      errors.map(e => `Línea ${e.startLineNumber}:${e.startColumn} — ${e.message}`)
+    );
+
     return errors.length === 0;
   };
 
   const process = async () => {
     setRequestError('');
     setResponse(null);
+
     if (!validateClient()) return;
+
     setBusy(true);
+
     try {
       const source = editorRef.current?.getValue() ?? '';
       const result = await mapDevs(source);
       setResponse(result);
       setTab('summary');
     } catch (e) {
-      setRequestError(e instanceof Error ? e.message : 'Error inesperado al invocar Mapper_DEVS.');
+      setRequestError(
+        e instanceof Error ? e.message : 'Error inesperado al invocar Mapper_DEVS.'
+      );
     } finally {
       setBusy(false);
     }
@@ -81,12 +111,15 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
 
   const download = (content: string | null | undefined, filename: string) => {
     if (!content) return;
+
     const blob = new Blob([content], { type: 'application/xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
+
     a.href = url;
     a.download = filename;
     a.click();
+
     URL.revokeObjectURL(url);
   };
 
@@ -113,18 +146,25 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
               <h2>Especificación DEVS</h2>
               <span>Validación sintáctica ANTLR en el navegador</span>
             </div>
-            <button className="secondary" onClick={validateClient}>Validar sintaxis</button>
+            <button className="secondary" onClick={validateClient}>
+              Validar sintaxis
+            </button>
           </div>
+
           <div ref={editorNode} className="editor" />
+
           <div className="actions">
             <button className="primary" disabled={busy} onClick={process}>
               {busy ? 'Procesando…' : 'Procesar con Mapper_DEVS'}
             </button>
           </div>
+
           {clientErrors.length > 0 && (
             <div className="diagnostics error-box">
               <strong>Errores sintácticos</strong>
-              {clientErrors.map((e, i) => <div key={i}>{e}</div>)}
+              {clientErrors.map((error, index) => (
+                <div key={index}>{error}</div>
+              ))}
             </div>
           )}
         </section>
@@ -133,43 +173,129 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
           <div className="panel-header">
             <div>
               <h2>Resultado del pipeline</h2>
-              <span>Respuesta de POST /b04/api/devs/map</span>
+              <span>Respuesta de POST /api/devs/map</span>
             </div>
-            {response && <span className={`status ${response.success ? 'ok' : 'fail'}`}>{response.stage}</span>}
+            {response && (
+              <span className={`status ${response.success ? 'ok' : 'fail'}`}>
+                {response.stage}
+              </span>
+            )}
           </div>
 
           <div className="tabs">
-            <button className={tab === 'summary' ? 'active' : ''} onClick={() => setTab('summary')}>Resumen</button>
-            <button className={tab === 'intermediate' ? 'active' : ''} onClick={() => setTab('intermediate')}>devsModel.xmi</button>
-            <button className={tab === 'computational' ? 'active' : ''} onClick={() => setTab('computational')}>Computacional</button>
+            <button
+              className={tab === 'summary' ? 'active' : ''}
+              onClick={() => setTab('summary')}
+            >
+              Resumen
+            </button>
+            <button
+              className={tab === 'intermediate' ? 'active' : ''}
+              onClick={() => setTab('intermediate')}
+            >
+              devsModel.xmi
+            </button>
+            <button
+              className={tab === 'computational' ? 'active' : ''}
+              onClick={() => setTab('computational')}
+            >
+              Computacional
+            </button>
           </div>
 
           <div className="result-content">
-            {!response && !requestError && <div className="empty-state">Ejecutá el mapper para ver validaciones y modelos generados.</div>}
-            {requestError && <div className="diagnostics error-box">{requestError}</div>}
+            {!response && !requestError && (
+              <div className="empty-state">
+                Ejecutá el mapper para ver validaciones y modelos generados.
+              </div>
+            )}
+
+            {requestError && (
+              <div className="diagnostics error-box">{requestError}</div>
+            )}
 
             {response && tab === 'summary' && (
               <div>
                 <h3>{response.message}</h3>
+
                 <div className="stage-grid">
                   <Stage label="Intermedio" value={response.intermediateValidation} />
                   <Stage label="Computacional" value={response.computationalValidation} />
                 </div>
+
                 {diagnostics.length > 0 && (
                   <div className="diagnostics">
                     <strong>Diagnósticos</strong>
-                    {diagnostics.map((d, i) => <div key={i}>{d}</div>)}
+                    {diagnostics.map((diagnostic, index) => (
+                      <div key={index}>{diagnostic}</div>
+                    ))}
                   </div>
                 )}
+
                 <div className="download-row">
-                  <button className="secondary" disabled={!response.devsModelXmi} onClick={() => download(response.devsModelXmi, 'devsModel.xmi')}>Descargar devsModel.xmi</button>
-                  <button className="secondary" disabled={!response.devsComputationalModelXmi} onClick={() => download(response.devsComputationalModelXmi, 'devsComputationalModel.xmi')}>Descargar computacional</button>
+                  <button
+                    className="secondary"
+                    disabled={!response.devsModelXmi}
+                    onClick={() => download(response.devsModelXmi, 'devsModel.xmi')}
+                  >
+                    Descargar devsModel.xmi
+                  </button>
+
+                  <button
+                    className="secondary"
+                    disabled={!response.devsComputationalModelXmi}
+                    onClick={() =>
+                      download(
+                        response.devsComputationalModelXmi,
+                        'devsComputationalModel.xmi'
+                      )
+                    }
+                  >
+                    Descargar computacional
+                  </button>
                 </div>
               </div>
             )}
 
-            {response && tab === 'intermediate' && <pre>{response.devsModelXmi || 'No generado.'}</pre>}
-            {response && tab === 'computational' && <pre>{response.devsComputationalModelXmi || 'No generado.'}</pre>}
+            {response && tab !== 'summary' && (
+              <div>
+                <div
+                  className="model-view-switch"
+                  role="group"
+                  aria-label={
+                    isIntermediate
+                      ? 'Vista del modelo intermedio'
+                      : 'Vista del modelo computacional'
+                  }
+                >
+                  <button
+                    type="button"
+                    className={`secondary${activeView === 'tree' ? ' active' : ''}`}
+                    aria-pressed={activeView === 'tree'}
+                    onClick={() => setActiveView('tree')}
+                  >
+                    Árbol
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`secondary${activeView === 'xml' ? ' active' : ''}`}
+                    aria-pressed={activeView === 'xml'}
+                    onClick={() => setActiveView('xml')}
+                  >
+                    XML
+                  </button>
+                </div>
+
+                {!activeXmi ? (
+                  <p className="muted">No generado.</p>
+                ) : activeView === 'tree' ? (
+                  <ModelTree key={tab} xmi={activeXmi} />
+                ) : (
+                  <pre>{activeXmi}</pre>
+                )}
+              </div>
+            )}
           </div>
         </section>
       </main>
@@ -177,12 +303,19 @@ export const Editor: React.FC<IEditorProps> = ({ language }) => {
   );
 };
 
-const Stage: React.FC<{ label: string; value?: { valid: boolean; severity: number; diagnostics: string[] } | null }> = ({ label, value }) => (
+const Stage: React.FC<{
+  label: string;
+  value?: { valid: boolean; severity: number; diagnostics: string[] } | null;
+}> = ({ label, value }) => (
   <div className="stage-card">
     <div className="stage-name">{label}</div>
-    {!value ? <div className="muted">No ejecutado</div> : (
+    {!value ? (
+      <div className="muted">No ejecutado</div>
+    ) : (
       <>
-        <div className={value.valid ? 'valid' : 'invalid'}>{value.valid ? 'Válido' : 'Inválido'}</div>
+        <div className={value.valid ? 'valid' : 'invalid'}>
+          {value.valid ? 'Válido' : 'Inválido'}
+        </div>
         <div className="muted">Severidad: {value.severity}</div>
       </>
     )}

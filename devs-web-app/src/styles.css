@@ -41,3 +41,210 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .error-box { margin: 12px 16px; color: #912018; }
 .download-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
 @media (max-width: 1000px) { .workspace { grid-template-columns: 1fr; } .topbar { align-items: start; flex-direction: column; } }
+.model-view-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.model-view-switch .active {
+  color: #5b21b6;
+  background: #ede9fe;
+  border-color: #c4b5fd;
+}
+
+.model-viewer {
+  min-width: 0;
+}
+
+.model-tree-help {
+  margin: 0 0 12px;
+  color: #667085;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.model-tree {
+  max-height: 480px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.model-tree ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.model-tree > ul {
+  padding-left: 0;
+}
+
+.model-tree li {
+  margin: 3px 0;
+}
+
+.model-tree summary {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.model-node-label {
+  max-width: 100%;
+  padding: 4px 7px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #344054;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.model-node-label:hover {
+  background: #f0edf9;
+}
+
+.model-node-label.selected {
+  background: #ede9fe;
+  border-color: #c4b5fd;
+  color: #5b21b6;
+}
+
+.model-node-label:focus-visible,
+.model-tree summary:focus-visible {
+  outline: 2px solid #7c3aed;
+  outline-offset: 2px;
+}
+
+.model-node-leaf {
+  padding-left: 16px;
+}
+
+.model-node-count {
+  margin-left: 6px;
+  color: #667085;
+  font-size: 11px;
+}
+
+.model-properties {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+}
+
+.model-properties h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+.model-node-info {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 12px;
+  margin: 0 0 14px;
+  font-size: 12px;
+}
+
+.model-node-info dt {
+  font-weight: 700;
+}
+
+.model-node-info dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.model-properties table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.model-properties caption {
+  text-align: left;
+  margin-bottom: 8px;
+  color: #667085;
+}
+
+.model-properties th,
+.model-properties td {
+  padding: 8px;
+  border-bottom: 1px solid #e4e7ec;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.model-properties th {
+  background: #f9fafb;
+}
+
+.model-properties th:first-child {
+  width: 38%;
+}
+
+.model-node-text h4 {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+/* El editor y los resultados ocupan el espacio visible en escritorio. */
+@media (min-width: 1001px) {
+  .app-shell {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .topbar,
+  .workspace {
+    width: 100%;
+  }
+
+  .workspace {
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .editor-panel,
+  .result-panel,
+  .editor {
+    min-height: 0;
+  }
+}
+
+/* Mantiene los encabezados, las pestañas y el botón fuera del scroll. */
+.panel-header,
+.tabs,
+.actions {
+  flex-shrink: 0;
+}
+
+/* Acá se desplazan el árbol, sus propiedades y el XML. */
+.result-content {
+  min-height: 0;
+  overflow: auto;
+}
+
+/* En pantallas angostas los paneles se apilan y el resultado tiene un límite. */
+@media (max-width: 1000px) {
+  .result-panel {
+    min-height: 0;
+  }
+
+  .result-content {
+    max-height: 65vh;
+  }
+}
